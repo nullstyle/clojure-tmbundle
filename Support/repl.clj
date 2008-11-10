@@ -1,6 +1,7 @@
+
 (import '(java.net ServerSocket Socket SocketException InetAddress)
         '(java.io InputStreamReader OutputStreamWriter File)
-        '(clojure.lang LineNumberingPushbackReader))
+        '(clojure.lang LineNumberingPushbackReader Compiler Compiler$CompilerException))
         
 (use 'clojure.contrib.duck-streams)
  
@@ -17,7 +18,13 @@
                          (catch SocketException e))
                     (recur)))
       ss))
- 
+
+(defn extract-root-cause [throwable]
+  (loop [e throwable]
+    (if (nil? (.getCause e))
+      e
+      (recur (.getCause e)))))
+             
 (defn repl
   "runs a repl on ins and outs until eof"
   [ins outs]
@@ -28,9 +35,16 @@
             r (new LineNumberingPushbackReader (new InputStreamReader ins))]
         (loop [e (read r false eof)]
           (when-not (or (= e :repl_eof) (= e eof))
-            (prn (eval e))
-            (flush)
-            (recur (read r false eof)))))))
+            (try 
+              (prn (eval e))
+              (flush)
+              (recur (read r false eof))
+            (catch Throwable e
+              (let [c (extract-root-cause e)]
+                (if (isa? Compiler$CompilerException e)
+                  (println e)
+                  (println c)))
+              (flush))))))))
  
 (defn socket-repl 
   "starts a repl thread on the iostreams of supplied socket"
