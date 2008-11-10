@@ -23,7 +23,7 @@ git clone git://github.com/nullstyle/clojure-tmbundle.git Clojure.tmbundle
 </pre>
 
 <h2>Using the bundle</h2>
-<strong>Note: the Clojure bundle currently only works with textmate projects...  one-off files will fail.</srong>
+<strong>Note: the Clojure bundle currently only works with textmate projects...  one-off files will fail.</strong>
   
 This bundle spawns a Clojure REPL (unique to each TextMate project) in the background (using screen), which then receives commands from textmate, and returns the evaluated forms.
 
