@@ -1,7 +1,7 @@
 The Clojure Textmate Bundle.
 Version 0.1 (released November 9, 2008)
 
-<h2>Prerequisites</h2>
+## Prerequisites
 
 The Clojure bundle depends on the following external utilities to work:
 
@@ -13,17 +13,18 @@ The Clojure bundle depends on the following external utilities to work:
 
 If either of those aren't on your Textmate's PATH, these commands will fail in unknown and spectacular fashion.
 
-<h2>Installation</h2>
+## Installation
 
 * Run this:
  
 <pre>
 cd ~/Library/Application\ Support/TextMate/Bundles
 git clone git://github.com/nullstyle/clojure-tmbundle.git Clojure.tmbundle
+osascript -e 'tell app "TextMate" to reload bundles'
 </pre>
 
-<h2>Using the bundle</h2>
-<strong>Note: the Clojure bundle currently only works with textmate projects...  one-off files will fail.</strong>
+## Using the bundle
+**Note: the Clojure bundle currently only works with textmate projects...  one-off files will fail.**
   
 This bundle spawns a Clojure REPL (unique to each TextMate project) in the background (using screen), which then receives commands from textmate, and returns the evaluated forms.
 
@@ -33,7 +34,7 @@ Apple-Shift-R will run the entire file in the REPL
 
 Apple-Option-R will open a terminal and connect to the screen instance running the current project's REPL
 
-<h2>Bundled Clojure</h2>
+## Bundled Clojure
 
 To less the setup curve, I bundle the following items to provide a self-contained and featureful Clojure environment:
 
@@ -47,7 +48,7 @@ clj  (ruby script to help launch Clojure)
 
 In a future revision,  I plan to allow customization/updates to this environment. 
 
-<h2>Support</h2>
+## Support
 
 * <a href="mailto:nullstyle@gmail.com">Drop me an emailt</a>.
 
@@ -55,8 +56,8 @@ In a future revision,  I plan to allow customization/updates to this environment
   
   * <a href="http://github.com/nullstyle/clojure-tmbundle/">On GitHub</a>.
 
-<hr />
+---
 
-<h3>Major Contributions</h3>
+### Major Contributions
 
-* <b>Scott Fleckenstein</b> - Started it.
+* **Scott Fleckenstein** - Started it.
