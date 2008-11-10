@@ -16,15 +16,13 @@ require ENV['TM_BUNDLE_SUPPORT'] + '/clojure.rb'
 
 Clojure::Mate.connect_terminal</string>
 	<key>input</key>
-	<string>selection</string>
+	<string>none</string>
 	<key>keyEquivalent</key>
-	<string>@E</string>
+	<string>~@r</string>
 	<key>name</key>
-	<string>Open Terminal to REPL</string>
+	<string>Open Terminal to Clojure REPL</string>
 	<key>output</key>
-	<string>replaceSelectedText</string>
-	<key>scope</key>
-	<string>source.clojure</string>
+	<string>discard</string>
 	<key>uuid</key>
 	<string>4317DEFD-FB99-44EB-956C-6EA72E5314D7</string>
 </dict>
