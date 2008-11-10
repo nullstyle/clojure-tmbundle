@@ -34,7 +34,6 @@ module Clojure
                 end
       
       to_run = pick_form(forms, offset) || ENV["TM_CURRENT_LINE"]
-
       result = repl.evaluate(to_run)
       
       show_html(result)
@@ -62,7 +61,7 @@ module Clojure
         forms[key]
       when Range
         keys = forms.keys.select{|key| key.overlaps?(offset)}
-        keys.sort{|l,r| l.first <=> r.first}
+        keys.sort!{|l,r| l.first <=> r.first}
         keys.map do |k|
           forms[k]
         end.join("\n")
