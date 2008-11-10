@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+require 'optparse'
+CLOJURE_HOME = ENV['CLOJURE_HOME'] || File.dirname(__FILE__)
+
+def e_sh(obj)
+  case obj
+  when Array:   obj.map{|a| e_sh(a)}
+  when String:  obj.to_s.gsub(/(?=[^a-zA-Z0-9_.\/\-\x7F-\xFF\n])/, '\\').gsub(/\n/, "'\n'").sub(/^$/, "''")
+  end
+end
+
+
+if ARGV.first == "--version"
+  puts "1.0"
+  exit 0
+end
+
+CMDLINE = OptionParser.new do |opts|
+  opts.separator ""  
+  opts.on("-i", "--interactive", "run a REPL") {@interactive = true}
+end
+
+CMDLINE.parse!(ARGV)
+if ARGV.length > 0 && !@interactive
+  puts "You must specify a file to run when in script mode"
+  exit(1)
+end
+
+JARS = %w( jline jna clojure clojure-contrib )
+CLASSPATH = e_sh(JARS.map{|j| "#{CLOJURE_HOME}/#{j}.jar"}).join(":")
+
+if @interactive
+  exec("java -cp #{CLASSPATH} jline.ConsoleRunner clojure.lang.Repl #{e_sh(ARGV).join(" ")}")
+else
+  exec("java -cp #{CLASSPATH} clojure.lang.Script #{e_sh(ARGV).join(" ")}")  
+end

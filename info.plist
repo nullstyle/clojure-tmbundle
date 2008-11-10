@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Clojure</string>
+	<key>ordering</key>
+	<array>
+		<string>38E7ED10-6743-40EE-A86C-B645C4DAA894</string>
+	</array>
+	<key>uuid</key>
+	<string>6B2BD209-0142-4CA6-A596-9250015AD8CA</string>
+</dict>
+</plist>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string></string>
+	<key>fileTypes</key>
+	<array>
+		<string>clj</string>
+	</array>
+	<key>foldingStartMarker</key>
+	<string>\(</string>
+	<key>foldingStopMarker</key>
+	<string>\)</string>
+	<key>keyEquivalent</key>
+	<string>^~L</string>
+	<key>name</key>
+	<string>Clojure</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.function-type.lisp</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.lisp</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(\b(?i:(defn))\b)(\s+)((\w|\-|\!|\?)*)</string>
+			<key>name</key>
+			<string>meta.function.lisp</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\b(?i:case|do|let|def|recur|loop|if|else|when-not|when)\b</string>
+			<key>name</key>
+			<string>keyword.control.lisp</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\b(?i:load-file|require|use|import|ns|gen-and-load-interface)\b</string>
+			<key>name</key>
+			<string>support.function.lisp</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>source.lisp</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>source.clojure</string>
+	<key>uuid</key>
+	<string>38E7ED10-6743-40EE-A86C-B645C4DAA894</string>
+</dict>
+</plist>
