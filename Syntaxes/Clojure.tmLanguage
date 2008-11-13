@@ -50,10 +50,35 @@
 			<string>support.function.lisp</string>
 		</dict>
 		<dict>
+			<key>begin</key>
+			<string>#\"</string>
+			<key>end</key>
+			<string>\"</string>
+			<key>name</key>
+			<string>string.regexp.clojure</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#regexp_escaped_char</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
 			<key>include</key>
 			<string>source.lisp</string>
 		</dict>
 	</array>
+	<key>repository</key>
+	<dict>
+		<key>regexp_escaped_char</key>
+		<dict>
+			<key>match</key>
+			<string>\\(\")</string>
+			<key>name</key>
+			<string>string.regexp.clojure</string>
+		</dict>
+	</dict>
 	<key>scopeName</key>
 	<string>source.clojure</string>
 	<key>uuid</key>
