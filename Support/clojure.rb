@@ -1,8 +1,6 @@
 $:.unshift File.dirname(__FILE__)
 require ENV['TM_SUPPORT_PATH'] + '/lib/textmate.rb'
 require ENV['TM_SUPPORT_PATH'] + '/lib/ui.rb'
-require ENV['TM_SUPPORT_PATH'] + '/lib/tm/htmloutput.rb'
-require ENV['TM_SUPPORT_PATH'] + '/lib/tm/detach.rb'
 require 'stringio'
 require 'tempfile'
 
@@ -69,22 +67,7 @@ module Clojure
     end
     
     def show_html(result)
-      old_stdout = $stdout
-      begin
-        output = StringIO.new
-        $stdout = output
-        TextMate::HTMLOutput.show do |out|
-          out << "<pre>"
-          out << result
-          out << "</pre>"
-        end
-        $stdout.flush
-        $stdout.close
-      ensure
-        $stdout = old_stdout
-      end
-      
-      TextMate.exit_show_html(output.string)
+      TextMate.exit_show_html("<pre>#{result}</pre>")
     end
     
     extend self

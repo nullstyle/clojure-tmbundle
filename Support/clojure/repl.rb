@@ -61,7 +61,6 @@ class Clojure::REPL
   
   private
   def get_socket(retries_left = 3)
-    p port
     TCPSocket.new("localhost", port)
   rescue Errno::ECONNREFUSED
     retries_left -= 1
