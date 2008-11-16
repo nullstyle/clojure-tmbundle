@@ -35,7 +35,7 @@
             r (new LineNumberingPushbackReader (new InputStreamReader ins))]
         (loop [e (read r false eof)]
           (when-not (or (= e :repl_eof) (= e eof))
-            (try 
+            (try
               (prn (eval e))
               (flush)
               (recur (read r false eof))
