@@ -1,5 +1,6 @@
 require ENV['TM_SUPPORT_PATH'] + '/lib/escape.rb'
 require ENV['TM_SUPPORT_PATH'] + '/lib/ui.rb'
+require ENV['TM_SUPPORT_PATH'] + '/lib/exit_codes.rb'
 require 'socket'
 require 'timeout'
 

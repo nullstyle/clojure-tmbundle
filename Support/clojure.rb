@@ -1,6 +1,7 @@
 $:.unshift File.dirname(__FILE__)
 require ENV['TM_SUPPORT_PATH'] + '/lib/textmate.rb'
 require ENV['TM_SUPPORT_PATH'] + '/lib/ui.rb'
+require ENV['TM_SUPPORT_PATH'] + '/lib/exit_codes.rb'
 require 'stringio'
 require 'tempfile'
 
