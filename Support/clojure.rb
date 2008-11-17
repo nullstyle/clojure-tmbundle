@@ -68,7 +68,7 @@ module Clojure
     end
     
     def show_html(result)
-      TextMate.exit_show_html("<pre>#{result}</pre>")
+      TextMate.exit_show_html("<pre>#{result.gsub("<", "&lt;")}</pre>")
     end
     
     extend self
