@@ -42,6 +42,12 @@ module Clojure
       show_html get_repl.evaluate(STDIN.read)
     end
     
+    def get_help
+      text = STDIN.read
+      
+      show_html get_repl.evaluate("(doc #{text})")
+    end
+    
     def connect_terminal
       get_repl.connect_terminal
       TextMate.exit_discard
