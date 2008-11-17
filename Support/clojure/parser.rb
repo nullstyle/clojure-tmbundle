@@ -1,7 +1,7 @@
 module Clojure  
 
   class Parser
-    OPEN_TOKENS =   %w| #{ { #( '( ( [ |
+    OPEN_TOKENS =   %w| #{ { #( '( `( ( [ |
     CLOSE_TOKENS =  %w| ) } ]|
     
     SCAN_TOKENS = (OPEN_TOKENS + CLOSE_TOKENS).map do |t|
