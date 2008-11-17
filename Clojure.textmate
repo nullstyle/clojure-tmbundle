@@ -1,0 +1,164 @@
+{	scopeName = 'source.clojure';
+	comment = '';
+	fileTypes = ( 'clj' );
+	foldingStartMarker = '\(';
+	foldingStopMarker = '\)';
+	patterns = (
+		{	include = '#comment'; },
+		{	include = '#qouted-sexp'; },
+		{	include = '#sexp'; },
+		{	include = '#string'; },
+		{	include = '#vector'; },
+		{	include = '#set'; },
+		{	include = '#map'; },
+		{	include = '#regexp'; },
+		{	include = '#constants'; },
+	);
+	repository = {
+	    comment = {
+			name = 'comment.line.semicolon.clojure';
+			match = '(;).*$\n?';
+			captures = { 1 = { name = 'punctuation.definition.comment.clojure'; }; };
+		};
+		
+		constants = {
+			patterns = (
+				{	name = 'constant.language.nil.clojure';
+					match = '(nil)';
+				},
+				{	name = 'constant.language.boolean.clojure';
+					match = '(true|false)';
+				},
+				{	name = 'constant.numeric.ratio.clojure';
+					match = '(\d+/\d+)';
+				},
+				{	name = 'constant.numeric.arbitrary-radix.clojure';
+					match = '(\d+r\d+)';
+				},
+				{	name = 'constant.numeric.hexidecimal.clojure';
+					match = '(0x\d+)';
+				},
+				{	name = 'constant.numeric.octal.clojure';
+					match = '(0\d+)';
+				},
+				{	name = 'constant.numeric.decimal.clojure';
+					match = '(\d+)';
+				},
+			);
+		};
+		
+	    regexp = {	
+	        name = 'string.regexp.clojure';
+			begin = '#\"';
+			end = '\"';
+			patterns = ( { include = '#regexp_escaped_char'; } );
+		};
+		
+		regexp_escaped_char = {
+			name = 'string.regexp.clojure';
+			match = '\\(\")';
+		};
+		
+		sexp = {
+			name = 'meta.expression.clojure';
+			begin = '(\()';
+			end = '(\))(\n)?';
+			beginCaptures = { 1 = { name = 'punctuation.section.expression.begin.clojure'; }; };
+			endCaptures = {
+				1 = { name = 'punctuation.section.expression.end.clojure'; };
+				2 = { name = 'meta.after-expression.clojure'; };
+			};	
+			patterns = (
+			    {	name = 'meta.definition.global.clojure';
+					begin = '(?<=\()(def|def-)\s+(.+?)(?=\s)';
+					end = '(?=\))';
+					beginCaptures = {
+						1 = { name = 'keyword.control.clojure'; };
+						2 = { name = 'entity.global.clojure'; };
+					};
+					patterns = (
+						{	include = '$self'; },
+					);
+				},
+			    {	name = 'meta.definition.function.clojure';
+					begin = '(?<=\()(defn|defn-)\s+(.+?)(?=\s)';
+					end = '(?=\))';
+					beginCaptures = {
+						1 = { name = 'keyword.control.clojure'; };
+						2 = { name = 'entity.function.clojure'; };
+					};
+					patterns = (
+						{	include = '$self'; },
+					);
+				},
+			    {	name = 'meta.definition.macro.clojure';
+					begin = '(?<=\()(defmacro|defmacro-)\s+(.+?)(?=\s)';
+					end = '(?=\))';
+					beginCaptures = {
+						1 = { name = 'keyword.control.clojure'; };
+						2 = { name = 'entity.macro.clojure'; };
+					};
+					patterns = (
+						{	include = '$self'; },
+					);
+				},
+				{	include = '$self'; },
+			);	
+		};
+				
+		qouted-sexp = {
+			name = 'meta.qouted-expression.clojure';
+			begin = '([''``]\()';
+			end = '(\))(\n)?';
+			beginCaptures = { 1 = { name = 'punctuation.section.expression.begin.clojure'; }; };
+			endCaptures = {
+				1 = { name = 'punctuation.section.expression.end.clojure'; };
+				2 = { name = 'meta.after-expression.clojure'; };
+			};	
+			patterns = (
+				{	include = '$self'; },
+			);	
+		};
+		
+		string = {
+			name = 'string.quoted.double.clojure';
+			begin = '(")';
+			end = '(")';
+			beginCaptures = { 1 = { name = 'punctuation.definition.string.begin.clojure'; }; };
+			endCaptures = { 1 = { name = 'punctuation.definition.string.end.clojure'; }; };
+			patterns = (
+				{	name = 'constant.character.escape.clojure';
+					match = '\\.';
+				},
+			);
+		};
+		
+		vector = {
+		    name = "meta.vector.clojure";
+		    begin = '(\[)';
+			end = '(\])';	
+			patterns = (
+				{	include = '$self'; },
+			);
+		};
+		
+		set = {
+		    name = "meta.set.clojure";
+		    begin = '(\#\{)';
+			end = '(\})';	
+			patterns = (
+				{	include = '$self'; },
+			);
+		};
+		
+		map = {
+		    name = "meta.map.clojure";
+		    begin = '(\{)';
+			end = '(\})';	
+			patterns = (
+				{	include = '$self'; },
+			);
+		};
+	
+	};
+}

@@ -4,8 +4,17 @@
 <dict>
 	<key>name</key>
 	<string>Miscellaneous</string>
+	<key>scope</key>
+	<string>source.clojure</string>
 	<key>settings</key>
 	<dict>
+		<key>decreaseIndentPattern</key>
+		<string>(?x)^ [ \t]*+
+	  (?&lt;par&gt;
+	    ( [^()\n]++ | \( \g&lt;par&gt; \) )*+
+	  )
+	  ( \) [ \t]*+ ) ++
+	$</string>
 		<key>highlightPairs</key>
 		<array>
 			<array>
@@ -22,24 +31,37 @@
 			</array>
 		</array>
 		<key>increaseIndentPattern</key>
-		<string>^.*\(.*[^)"]$</string>
+		<string>(?x)^ [ \t]*+ \(
+	  (?&lt;par&gt;
+	    ( [^()\n]++ | \( \g&lt;par&gt; \)? )*+
+	  )
+	$</string>
+		<key>shellVariables</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>TM_COMMENT_START</string>
+				<key>value</key>
+				<string>;</string>
+			</dict>
+		</array>
 		<key>smartTypingPairs</key>
 		<array>
 			<array>
-				<string>(</string>
-				<string>)</string>
+				<string>"</string>
+				<string>"</string>
 			</array>
 			<array>
-				<string>[</string>
-				<string>]</string>
+				<string>(</string>
+				<string>)</string>
 			</array>
 			<array>
 				<string>{</string>
 				<string>}</string>
 			</array>
 			<array>
-				<string>"</string>
-				<string>"</string>
+				<string>[</string>
+				<string>]</string>
 			</array>
 		</array>
 	</dict>
