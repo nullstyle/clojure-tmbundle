@@ -5,6 +5,7 @@
 	foldingStopMarker = '\)';
 	patterns = (
 		{	include = '#comment'; },
+		{	include = '#shebang-comment'; },
 		{	include = '#qouted-sexp'; },
 		{	include = '#sexp'; },
 		{	include = '#string'; },
@@ -19,6 +20,13 @@
 			name = 'comment.line.semicolon.clojure';
 			match = '(;).*$\n?';
 			captures = { 1 = { name = 'punctuation.definition.comment.clojure'; }; };
+		};
+		
+		
+	    shebang-comment = {
+			name = 'comment.line.semicolon.clojure';
+			match = '^(\#!).*$\n?';
+			captures = { 1 = { name = 'punctuation.definition.comment.shebang.clojure'; }; };
 		};
 		
 		constants = {

@@ -24,6 +24,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#shebang-comment</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#qouted-sexp</string>
 		</dict>
 		<dict>
@@ -332,6 +336,21 @@
 					<string>$self</string>
 				</dict>
 			</array>
+		</dict>
+		<key>shebang-comment</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.comment.shebang.clojure</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>^(\#!).*$\n?</string>
+			<key>name</key>
+			<string>comment.line.semicolon.clojure</string>
 		</dict>
 		<key>string</key>
 		<dict>
