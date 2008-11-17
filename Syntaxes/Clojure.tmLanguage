@@ -58,6 +58,10 @@
 			<key>include</key>
 			<string>#constants</string>
 		</dict>
+		<dict>
+			<key>include</key>
+			<string>#symbol</string>
+		</dict>
 	</array>
 	<key>repository</key>
 	<dict>
@@ -383,6 +387,18 @@
 					<string>\\.</string>
 					<key>name</key>
 					<string>constant.character.escape.clojure</string>
+				</dict>
+			</array>
+		</dict>
+		<key>symbol</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>(\w[\w\d]+)</string>
+					<key>name</key>
+					<string>meta.symbol.clojure</string>
 				</dict>
 			</array>
 		</dict>

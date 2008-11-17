@@ -14,6 +14,7 @@
 		{	include = '#map'; },
 		{	include = '#regexp'; },
 		{	include = '#constants'; },
+		{	include = '#symbol'; },
 	);
 	repository = {
 	    comment = {
@@ -27,6 +28,14 @@
 			name = 'comment.line.semicolon.clojure';
 			match = '^(\#!).*$\n?';
 			captures = { 1 = { name = 'punctuation.definition.comment.shebang.clojure'; }; };
+		};
+		
+		symbol = {
+		    patterns = (
+		        {	name = 'meta.symbol.clojure';
+					match = '(\w[\w\d]+)';
+				},
+		    );
 		};
 		
 		constants = {
