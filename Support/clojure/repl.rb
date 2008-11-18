@@ -21,7 +21,7 @@ class Clojure::REPL
     cmd = File.expand_path(vendor_dir + "/clj")
     script = File.expand_path(File.dirname(__FILE__) + "/../repl.clj")
 
-    system "screen -dm -S #{shell_name} #{e_sh cmd} -i #{e_sh script}"      
+    system "screen -dm -S #{shell_name} #{e_sh cmd} -i #{e_sh script}"
     
     self
   end
@@ -77,6 +77,9 @@ class Clojure::REPL
     if retries_left > 0
       sleep 3
       retry
+    else
+      File.unlink(port_file)
+      raise "Could not contact the Repl"
     end
   end
 end
