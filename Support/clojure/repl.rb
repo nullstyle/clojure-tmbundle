@@ -26,6 +26,15 @@ class Clojure::REPL
     self
   end
   
+  def close
+    evaluate("(System/exit 0)")
+  end
+  
+  def restart
+    close
+    run
+  end
+  
   def connect_terminal
     Clojure::Util.connect_terminal(shell_name)
   end

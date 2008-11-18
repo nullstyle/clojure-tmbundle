@@ -42,6 +42,11 @@ module Clojure
       show_html get_repl.evaluate(STDIN.read)
     end
     
+    def restart_repl
+      get_repl.restart
+      show_html "Restarted"
+    end
+    
     def get_help
       text = STDIN.read
       
