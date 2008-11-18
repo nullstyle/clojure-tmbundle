@@ -15,22 +15,33 @@ if ARGV.first == "--version"
   exit 0
 end
 
+# =============================
+# = Initialize the baser Jars =
+# =============================
+@jars = %w( 
+  jline.jar 
+  jna.jar 
+  clojure.jar 
+  clojure-contrib.jar 
+).map{|j| "#{CLOJURE_HOME}/#{j}"}
+
+# ========================
+# = Command line parsing =
+# ========================
 CMDLINE = OptionParser.new do |opts|
   opts.separator ""  
   opts.on("-i", "--interactive", "run a REPL") {@interactive = true}
+  opts.on("-cp", "--classpath", "add to the classpath") {|path| @jars += path.split(":")}
 end
 
 CMDLINE.parse!(ARGV)
-if ARGV.length > 0 && !@interactive
-  puts "You must specify a file to run when in script mode"
-  exit(1)
-end
 
-JARS = %w( jline jna clojure clojure-contrib )
-CLASSPATH = e_sh(JARS.map{|j| "#{CLOJURE_HOME}/#{j}.jar"}).join(":")
+@interactive = true if ARGV.empty? #default to a REPL
+
+CLASSPATH = e_sh(@jars).join(":")
 
 if @interactive
-  exec("java -cp #{CLASSPATH} jline.ConsoleRunner clojure.lang.Repl #{e_sh(ARGV).join(" ")}")
-else
-  exec("java -cp #{CLASSPATH} clojure.lang.Script #{e_sh(ARGV).join(" ")}")  
+  exec("java -server -Djava.ext.dirs=./jars -cp #{CLASSPATH} jline.ConsoleRunner clojure.lang.Repl #{e_sh(ARGV).join(" ")}")
+else         
+  exec("java -server -Djava.ext.dirs=./jars -cp #{CLASSPATH} clojure.lang.Script #{e_sh(ARGV).join(" ")}")  
 end
